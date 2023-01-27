@@ -23,7 +23,7 @@ process SIMPLEAF_INDEX {
 
     script:
     def args = task.ext.args ?: ''
-    def seq_inputs = (params.transcript_fasta) ? "--refseq $transcript_fasta" : "--gtf $transcript_gtf"
+    def seq_inputs = (params.transcript_fasta) ? "--refseq $transcript_fasta" : "--fasta $genome_fasta --gtf $transcript_gtf"
     """
     # export required var
     export ALEVIN_FRY_HOME=.
@@ -35,7 +35,6 @@ process SIMPLEAF_INDEX {
     simpleaf \\
         index \\
         --threads $task.cpus \\
-        --fasta $genome_fasta \\
         $seq_inputs \\
         $args \\
         -o salmon
