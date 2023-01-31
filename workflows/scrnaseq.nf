@@ -118,7 +118,9 @@ workflow SCRNASEQ {
       ch_multiqc_fastqc    = FASTQC_CHECK.out.fastqc_multiqc.ifEmpty([])
     }
 
-    ch_filter_gtf = GTF_GENE_FILTER ( ch_genome_fasta, ch_gtf ).gtf
+    if (ch_gtf != []) }
+        ch_filter_gtf = GTF_GENE_FILTER ( ch_genome_fasta, ch_gtf ).gtf
+    }
 
     // Run kallisto bustools pipeline
     if (params.aligner == "kallisto") {
