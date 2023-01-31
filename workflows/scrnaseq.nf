@@ -121,7 +121,7 @@ workflow SCRNASEQ {
     if (ch_gtf.name != 'NO_FILE' ) {
         ch_filter_gtf = GTF_GENE_FILTER ( ch_genome_fasta, ch_gtf ).gtf
     } else {
-        ch_filter_gtf = Channel.empty()
+        ch_filter_gtf = file('NO_FILE')
     }
 
     // Run kallisto bustools pipeline
