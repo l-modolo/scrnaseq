@@ -71,8 +71,10 @@ ch_output_docs_images = file("$projectDir/docs/images/", checkIfExists: true)
 
 // general input and params
 ch_input = file(params.input)
-ch_genome_fasta = params.fasta ? file(params.fasta) : Channel.empty()
-ch_gtf = params.gtf ? file(params.gtf) : []
+params.fasta = 'NO_FILE'
+ch_genome_fasta = file(params.fasta)
+params.gtf = 'NO_FILE'
+ch_gtf = file(params.gtf)
 ch_transcript_fasta = params.transcript_fasta ? file(params.transcript_fasta): []
 ch_txp2gene = params.txp2gene ? file(params.txp2gene) : []
 ch_multiqc_alevin = Channel.empty()
@@ -118,7 +120,7 @@ workflow SCRNASEQ {
       ch_multiqc_fastqc    = FASTQC_CHECK.out.fastqc_multiqc.ifEmpty([])
     }
 
-    if (ch_gtf != []) {
+    if (ch_gtf.name != 'NO_FILE') {
         ch_filter_gtf = GTF_GENE_FILTER ( ch_genome_fasta, ch_gtf ).gtf
     } else {
         ch_filter_gtf = Channel.empty()
