@@ -36,7 +36,6 @@ process SIMPLEAF_INDEX {
         index \\
         --threads $task.cpus \\
         $seq_inputs \\
-        $args \\
         -o salmon
 
     cat <<-END_VERSIONS > versions.yml
