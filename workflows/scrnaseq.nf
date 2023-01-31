@@ -120,6 +120,8 @@ workflow SCRNASEQ {
 
     if (ch_gtf != []) {
         ch_filter_gtf = GTF_GENE_FILTER ( ch_genome_fasta, ch_gtf ).gtf
+    } else {
+        ch_filter_gtf = Channel.empty()
     }
 
     // Run kallisto bustools pipeline
