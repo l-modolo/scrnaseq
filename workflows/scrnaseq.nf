@@ -118,7 +118,7 @@ workflow SCRNASEQ {
       ch_multiqc_fastqc    = FASTQC_CHECK.out.fastqc_multiqc.ifEmpty([])
     }
 
-    if (ch_gtf != []) }
+    if (ch_gtf != []) {
         ch_filter_gtf = GTF_GENE_FILTER ( ch_genome_fasta, ch_gtf ).gtf
     }
 
