@@ -14,7 +14,7 @@ process SIMPLEAF_INDEX {
 
     output:
     path "salmon/index"              , emit: index
-    path "salmon/ref/*_t2g_3col.tsv" , emit: transcript_tsv
+    path "salmon/ref/*_t2g_3col.tsv" , emit: transcript_tsv , optional: true
     path "versions.yml"              , emit: versions
     path "salmon"                    , emit: salmon
 
