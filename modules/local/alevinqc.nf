@@ -21,6 +21,7 @@ process ALEVINQC {
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
     #!/usr/bin/env Rscript
+    Sys.setenv(HOME = "${task.workDir}")
     require(alevinQC)
     alevinFryQCReport(
         mapDir = "${alevin_results}/af_map",
