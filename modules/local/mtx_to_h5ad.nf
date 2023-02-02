@@ -39,6 +39,7 @@ process MTX_TO_H5AD {
     //
     if (params.aligner == 'cellranger')
     """
+    NUMBA_CACHE_DIR="${task.workDir}"
     # convert file types
     cellranger_mtx_to_h5ad.py \\
         --mtx filtered_feature_bc_matrix.h5 \\
@@ -48,6 +49,7 @@ process MTX_TO_H5AD {
 
     else if (params.aligner == 'kallisto' && params.kb_workflow != 'standard')
     """
+    NUMBA_CACHE_DIR="${task.workDir}"
     # convert file types
     for input_type in spliced unspliced ; do
         mtx_to_h5ad.py \\
@@ -62,6 +64,7 @@ process MTX_TO_H5AD {
 
     else
     """
+    NUMBA_CACHE_DIR="${task.workDir}"
     # convert file types
     mtx_to_h5ad.py \\
         --aligner ${params.aligner} \\
