@@ -49,7 +49,23 @@ process SIMPLEAF_QUANT {
     export ALEVIN_FRY_HOME=.
 
     # prep simpleaf
-    simpleaf set-paths
+    # simpleaf set-paths
+    echo '{
+      "prog_info": {
+        "alevin_fry": {
+          "exe_path": "/usr/local/bin/alevin-fry",
+          "version": "0.8.0"
+        },
+        "pyroe": {
+          "exe_path": "/usr/local/bin/pyroe",
+          "version": "0.6.4"
+        },
+        "salmon": {
+          "exe_path": "/usr/local/bin/salmon",
+          "version": "1.9.0"
+        }
+      }
+    }' > simpleaf_info.json
 
     # run simpleaf quant
     gzip -dcf $whitelist > whitelist.uncompressed.txt
